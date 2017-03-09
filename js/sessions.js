@@ -394,23 +394,17 @@ function sessions() {
 	var hour = parseInt(time.split(":")[0]),
 	    minutes = parseInt(time.split(":")[1]);
 
-        if(minutes > 0){
+        if((minutes+40) >= 60){
 		hour += 1;
-		if(minutes > 20){
- 			if(hour < 10){
-				return "0" + hour + ":20";
-			} else {
-				return hour + ":20";
-			}
-		}else{
-			if(hour < 10){
-                                return "0" + hour + ":00";
-                        } else {
-                                return hour + ":00";
-                        }
-		}
+		minutes = (minutes+40)-60;
 	}else{
-		return time.split(":")[0] + ":40";
+		minutes += 40;
+	}
+
+	if(hour < 10){
+		return "0" + hour + ":" + (minutes<10? "0" + minutes: minutes);
+	} else {
+		return hour + ":" + (minutes<10? "0" + minutes: minutes);
 	}
     }
 
