@@ -288,25 +288,18 @@ function sessions() {
     function createTableHeader() {
         var talks = "<tr><th></th>";
         var contests = "<tr><th></th>";
-	var teams = "<tr><th></th>";
 
         for (var key in rooms) {
             if (roomType(rooms[key]) == "contests") {
                 contests += "<th>" + rooms[key].name + "</th>";
             } else {
-		if(roomType(rooms[key]) == "teams"){
-               		teams += "<th>" + rooms[key].name + "</th>";
-		} else {
-		   talks += "<th>" + rooms[key].name + "</th>";
-		}
+	        talks += "<th>" + rooms[key].name + "</th>";
             }
         }
 
         $("#talks").find("table.day > thead").append(talks);
 
         $("#contests").find("table.day > thead").append(contests);
-
-	$("#teams").find("table.day > thead").append(teams);
 
     }
 
@@ -470,10 +463,6 @@ function sessions() {
             return "contests"; 
         }
 
-	if (room.type.toLowerCase() == "team"){
-            return "teams"; 
-        }
-
 	return "talks";
     }
 
@@ -490,10 +479,6 @@ function sessions() {
 
         if (session.type.toLowerCase() == "contest"){
             return "contests";
-        }
-
-        if (session.type.toLowerCase() == "team"){
-            return "teams";
         }
 
         return "talks";
