@@ -64,7 +64,7 @@ $(function () {
         data: {},
 	load: [
 		{ref: firebase.database().ref().child("tracks"), order: "name", store: "track", what: {value: "name", description: ["name"]}},
-		{ref: firebase.database().ref().child("rooms"), order: "name", store: "room", what: {value: "name", description: ["name", "type"]}},
+		{ref: firebase.database().ref().child("rooms"), order: "name", store: "room", what: {value: "id", description: ["name", "type"]}},
 		{ref: firebase.database().ref().child("speakers"), order: "name", store: "speakers", what: {value: "id", description: ["name"]}}
 	],
         databaseRef: firebase.database().ref().child("sessions"),
@@ -174,6 +174,7 @@ function configure(config) {
 		var vals = {};
                 $.each(shot, function (index, snap){
                         // Add new data to select menu
+                        
                         vals[index] = {};
                         $.each(toLoad.what, function (id, what){
 			    if(id == 'value'){
@@ -197,8 +198,6 @@ function configure(config) {
 				$('select').material_select();
 			}
 		});
-		
-		
         });
 
     });
@@ -422,7 +421,8 @@ function configure(config) {
 		    }
                     html += "<td class='" + field.name + " mdl-data-table__cell--non-numeric' style='color: white; background-color: " + val + "'>" + val + "</td>";
                     break;
-                default:
+       		
+	       default:
                     var value = "";
                     if (data[field.name]) {
                         if (field.options && field.options.truncate && data[field.name].length > field.options.truncate) {
