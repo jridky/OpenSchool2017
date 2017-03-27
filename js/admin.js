@@ -423,7 +423,7 @@ function configure(config) {
        		
 	       case FieldType.SELECT:
 			var value = data[field.name];
-			if(field.options.replace == true) {
+			if(field.options.replace == true && value != "" && value != undefined) {
 				if(field.options.multiple != "") {
 					var v = "";
 					$.each(value, function (id, item){
@@ -438,6 +438,10 @@ function configure(config) {
 				} else {
 					value = field.options.values[value]['description'];
 				}				
+			}
+
+			if( value == undefined ){
+				value = "";
 			}
 
 			html += "<td class='" + field.name + " mdl-data-table__cell--non-numeric'>" + value + "</td>";
@@ -492,7 +496,7 @@ function configure(config) {
 
 		case FieldType.SELECT:
                         var value = data[field.name];
-                        if(field.options.replace == true) {
+                        if(field.options.replace == true && value != "" && value != undefined) {
                                 if(field.options.multiple != "") {
                                         var v = "";
                                         $.each(value, function (id, item){
@@ -508,6 +512,10 @@ function configure(config) {
                                         value = field.options.values[value]['description'];
                                 }
                         }
+
+			if( value == undefined ) {
+				value = "";
+			}
 
 			tableRow.find('td.' + field.name).text(value);
                     break;
