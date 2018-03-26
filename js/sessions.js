@@ -370,7 +370,7 @@ function sessions() {
 	var result = parseInt(duration.split(":")[0]) * 60;
 	result += parseInt(duration.split(":")[1]);
 
-	result = result/30;
+	result = result/15;
 	checkTimeSlots(session, result);	
 	return result;
     }
@@ -405,11 +405,11 @@ function sessions() {
 	var hour = parseInt(time.split(":")[0]),
 	    minutes = parseInt(time.split(":")[1]);
 
-        if((minutes+30) >= 60){
+        if((minutes+15) >= 60){
 		hour += 1;
-		minutes = (minutes+30)-60;
+		minutes = (minutes+15)-60;
 	}else{
-		minutes += 30;
+		minutes += 15;
 	}
 
 	if(hour < 10){
